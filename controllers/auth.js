@@ -101,7 +101,8 @@ export const signin = asyncHandler(async (req, res, next) => {
         .send({ status: 400, message: "Invalid Credentials" });
 
     const token = generateToken(user._id);
-    res.status(200).send({ ...user._doc, token });
+    
+    res.status(200).send({ ...user._doc, token, isOtpVerified: true });
   } catch (err) {
     return res.status(400).json({
       message: "Invalid Data",
@@ -110,3 +111,17 @@ export const signin = asyncHandler(async (req, res, next) => {
     });
   }
 });
+
+export const generateOtp = asyncHandler(async (req, res, next) => {
+    let otp = Math.floor(100000 + Math.random() * 900000)
+   try {
+    res.status(200).send({otp});
+  } catch (err) {
+    return res.status(400).json({
+      message: "Invalid Data",
+      c: 400,
+      d: { message: "Invalid Data" },
+    });
+  }
+});
+

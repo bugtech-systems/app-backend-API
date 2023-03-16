@@ -1,6 +1,7 @@
 import express from 'express';
 import {
     createUser,
+    generateOtp,
     signin
 } from '../controllers/auth.js';
 import { authorize, protect } from '../middleware/auth.js';
@@ -14,5 +15,9 @@ router.route('/signup').post([
     createUser])
 
 router.route('/signin').post(signin)
+router.route('/generate-otp').post([
+    protect,
+    authorize('user'), 
+    generateOtp])
 
 export default router;

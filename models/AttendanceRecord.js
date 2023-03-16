@@ -25,4 +25,6 @@ const AttendanceRecordSchema = new mongoose.Schema({
     {
         timestamps: true
     })
+    
+    
 export default mongoose.model("AttendanceRecord", AttendanceRecordSchema);
